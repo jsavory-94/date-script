@@ -61,11 +61,9 @@ def get_dates(yr, mo, day):
 
       master_list_sorted = sorted(master_list, key=lambda i: i['current'])
 
-      print('---printed---')
-      print(master_list_sorted)
-
-      print('---returned---')
       return master_list_sorted
+
+
 
 
    else:
@@ -103,4 +101,6 @@ def get_dates(yr, mo, day):
    #    print('monday logic goes here')
 
 
-get_dates(2020,5,21)
+foo = get_dates(2020,5,21)
+
+print(foo)
