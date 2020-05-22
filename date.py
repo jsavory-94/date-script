@@ -1,6 +1,7 @@
 from typing import List, Dict
 import datetime as dt
 from datetime import date, timedelta
+import pprint
 
 def get_dates(yr, mo, day):
    date_str = f'{yr}-{mo}-{day}'
@@ -65,9 +66,47 @@ def get_dates(yr, mo, day):
 
 
 
-
    else:
-      print('Monday code goes here')
+      print('Monday code running')
+      functional_date = date - timedelta(days=1)
+      functional_date_previous = functional_date - timedelta(7)
+      functional_weekday = functional_date.weekday()
+      functional_weekday_incrementor = 1
+
+      print(f'functional date: {functional_date}')
+      print(functional_date_previous)
+      print(functional_weekday)
+
+
+
+
+      functional_weekday_1 = functional_weekday
+
+      master_list_monday = []
+
+      while functional_weekday_1 > 0:
+         print(functional_weekday_1)
+
+         date_dict_monday = {'current': functional_date, 'previous': functional_date_previous}
+         date_dict_monday_1 = {'current': functional_date - timedelta(days=functional_weekday_incrementor), 'previous': functional_date_previous - timedelta(days=functional_weekday_incrementor)}
+         print(date_dict_monday)
+         ##print(date_dict_new['previous'])
+         #print(type(date_dict_new['previous']))
+         # print(date_dict_new)
+         if functional_weekday_1 == 6:
+            master_list_monday.append(date_dict_monday)
+
+         master_list_monday.append(date_dict_monday_1)
+         #print(f'current weekday {weekday_1}')
+         functional_weekday_1 -= 1
+         functional_weekday_incrementor +=1
+
+      master_list_monday_sorted = sorted(master_list_monday, key=lambda i: i['current'])
+
+
+      return master_list_monday_sorted
+
+
       # master_list_new = []
       #
       # format_loop_counter = 0
@@ -102,5 +141,13 @@ def get_dates(yr, mo, day):
 
 
 foo = get_dates(2020,5,21)
+bar = get_dates(2020, 5, 18)
 
-print(foo)
+
+pp = pprint.PrettyPrinter(indent=1)
+
+print('---2020, 5, 21---')
+pp.pprint(foo)
+
+print('---2020, 5, 18---')
+pp.pprint(bar)
