@@ -6,36 +6,57 @@ def get_dates(yr, mo, day):
    date_str = f'{yr}-{mo}-{day}'
    date = dt.datetime.strptime(date_str, '%Y-%m-%d')
    weekday = date.weekday()
+   print(weekday)
 
 
    if weekday != 0:
-      date_previous_str = date - timedelta(days=7)
-      date_previous_str_formatted = date_previous_str.strftime('%Y-%m-%d')
-
-      date_previous = dt.datetime.strptime(date_str, '%Y-%m-%d')
+      date_previous = date - timedelta(days=7)
+      date_previous_str = date_previous.strftime('%Y-%m-%d')
+      date_previous = dt.datetime.strptime(date_previous_str, '%Y-%m-%d')
       # print('L15')
       # print(type(date_previous))
 
-      date_dict = {'current': date, 'previous': date_previous_str_formatted}
+      date_dict = {'current': date, 'previous': date_previous}
       # print(weekday)
 
 
       master_list = [date_dict]
 
-      i=weekday
-      weekday_decrementor = 1
-      #print(i)
 
-      while i > 0:
+
+      weekday_1 = weekday
+      weekday_decrementor = 1
+
+
+      while weekday_1 > 0:
          #print(weekday_decrementor)
-         # print('while loop is running')
+         print('finding previous monday to time given')
          date_dict_new = {'current': date - timedelta(days=weekday_decrementor), 'previous': date_previous - timedelta(days=weekday_decrementor)}
+         print(date_dict_new)
+         print(date_dict_new['previous'])
+         print(type(date_dict_new['previous']))
          # print(date_dict_new)
          master_list.append(date_dict_new)
-         i -= 1
+         print(f'current weekday {weekday_1}')
+         weekday_1 -= 1
          weekday_decrementor +=1
 
-      # print(master_list)
+
+      weekday_2 = weekday
+      weekday_incrementor = 1
+
+      while weekday_2 < 6:
+         #print(weekday_decrementor)
+         print('finding next Sunday to time given')
+         date_dict_new_1 = {'current': date + timedelta(days=weekday_incrementor), 'previous': date_previous + timedelta(days=weekday_incrementor)}
+         print(date_dict_new_1)
+         # print(date_dict_new)
+         master_list.append(date_dict_new_1)
+         print(f'current weekday {weekday_2}')
+         weekday_2 += 1
+         weekday_incrementor +=1
+
+      print(master_list)
       return master_list
 
 
