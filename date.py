@@ -3,22 +3,24 @@ import datetime as dt
 from datetime import date, timedelta
 import pprint
 
-def get_dates(yr, mo, day):
-   date_str = f'{yr}-{mo}-{day}'
-   date = dt.datetime.strptime(date_str, '%Y-%m-%d')
-   weekday = date.weekday()
+
+
+def get_dates(date_arg):
+   date_var = date_arg
+   #date_var = dt.datetime.strptime(date_str, '%Y-%m-%d')
+   weekday = date_var.weekday()
    #print(weekday)
 
 
    if weekday != 0:
       print('non-monday code running')
-      date_previous = date - timedelta(days=7)
+      date_previous = date_var - timedelta(days=7)
       date_previous_str = date_previous.strftime('%Y-%m-%d')
       date_previous = dt.datetime.strptime(date_previous_str, '%Y-%m-%d')
       # print('L15')
       # print(type(date_previous))
 
-      date_dict = {'current': date, 'previous': date_previous}
+      date_dict = {'current': date_var, 'previous': date_previous}
       # print(weekday)
 
 
@@ -33,7 +35,7 @@ def get_dates(yr, mo, day):
       while weekday_1 > 0:
          #print(weekday_decrementor)
          #print('finding previous monday to time given')
-         date_dict_new = {'current': date - timedelta(days=weekday_decrementor), 'previous': date_previous - timedelta(days=weekday_decrementor)}
+         date_dict_new = {'current': date_var - timedelta(days=weekday_decrementor), 'previous': date_previous - timedelta(days=weekday_decrementor)}
          #print(date_dict_new)
          ##print(date_dict_new['previous'])
          #print(type(date_dict_new['previous']))
@@ -50,7 +52,7 @@ def get_dates(yr, mo, day):
       while weekday_2 < 6:
          #print(weekday_decrementor)
          #print('finding next Sunday to time given')
-         date_dict_new_1 = {'current': date + timedelta(days=weekday_incrementor), 'previous': date_previous + timedelta(days=weekday_incrementor)}
+         date_dict_new_1 = {'current': date_var + timedelta(days=weekday_incrementor), 'previous': date_previous + timedelta(days=weekday_incrementor)}
          #print(date_dict_new_1)
          # print(date_dict_new)
          master_list.append(date_dict_new_1)
@@ -68,7 +70,7 @@ def get_dates(yr, mo, day):
 
    else:
       print('Monday code running')
-      functional_date = date - timedelta(days=1)
+      functional_date = date_var - timedelta(days=1)
       functional_date_previous = functional_date - timedelta(7)
       functional_weekday = functional_date.weekday()
       functional_weekday_incrementor = 1
@@ -140,8 +142,8 @@ def get_dates(yr, mo, day):
    #    print('monday logic goes here')
 
 
-foo = get_dates(2020,5,21)
-bar = get_dates(2020, 5, 18)
+foo = get_dates(date(2020,5,21))
+bar = get_dates(date(2020, 5, 18))
 
 
 pp = pprint.PrettyPrinter(indent=1)
