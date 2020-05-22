@@ -4,19 +4,20 @@ from datetime import date, timedelta
 import pprint
 
 
-
 def get_dates(date_arg):
    date_var = date_arg
-   #date_var = dt.datetime.strptime(date_str, '%Y-%m-%d')
    weekday = date_var.weekday()
-   #print(weekday)
 
 
    if weekday != 0:
-      print('non-monday code running')
+      #print('non-monday code running')
       date_previous = date_var - timedelta(days=7)
-      date_previous_str = date_previous.strftime('%Y-%m-%d')
-      date_previous = dt.datetime.strptime(date_previous_str, '%Y-%m-%d')
+      # print('L28')
+      # print(type(date_previous))
+      # print(date_previous)
+
+      # date_previous_str = date_previous.strftime('%Y-%m-%d')
+      # date_previous = dt.datetime.strptime(date_previous_str, '%Y-%m-%d')
       # print('L15')
       # print(type(date_previous))
 
@@ -69,15 +70,15 @@ def get_dates(date_arg):
 
 
    else:
-      print('Monday code running')
+      # print('Monday code running')
       functional_date = date_var - timedelta(days=1)
       functional_date_previous = functional_date - timedelta(7)
       functional_weekday = functional_date.weekday()
       functional_weekday_incrementor = 1
 
-      print(f'functional date: {functional_date}')
-      print(functional_date_previous)
-      print(functional_weekday)
+      # print(f'functional date: {functional_date}')
+      # print(functional_date_previous)
+      # print(functional_weekday)
 
 
 
@@ -87,11 +88,11 @@ def get_dates(date_arg):
       master_list_monday = []
 
       while functional_weekday_1 > 0:
-         print(functional_weekday_1)
+         # print(functional_weekday_1)
 
          date_dict_monday = {'current': functional_date, 'previous': functional_date_previous}
          date_dict_monday_1 = {'current': functional_date - timedelta(days=functional_weekday_incrementor), 'previous': functional_date_previous - timedelta(days=functional_weekday_incrementor)}
-         print(date_dict_monday)
+         # print(date_dict_monday)
          ##print(date_dict_new['previous'])
          #print(type(date_dict_new['previous']))
          # print(date_dict_new)
@@ -148,8 +149,8 @@ bar = get_dates(date(2020, 5, 18))
 
 pp = pprint.PrettyPrinter(indent=1)
 
-print('---2020, 5, 21---')
+print('---foo: 2020, 5, 21---')
 pp.pprint(foo)
 
-print('---2020, 5, 18---')
+print('---bar: 2020, 5, 18---')
 pp.pprint(bar)
