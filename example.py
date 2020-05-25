@@ -1,7 +1,7 @@
 """
 
 I want a function, that given a date, returns a list of dates within
- a week that includes the given date, plus the matching day
+a week that includes the given date, plus the matching day
 from the previous week
 
 E.g. if `date(2020, 5, 21)` was entered-- the returned data would be:
