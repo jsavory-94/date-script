@@ -40,7 +40,10 @@ from datetime import date
 
 def get_dates(dt: date) -> List[Dict[str, date]]:
     ...
-    placeholder_data = [{'current': date(2020, 1, 1), 'previous': date(2020, 1, 1)}, ...]
+    placeholder_data = [
+        {"current": date(2020, 1, 1), "previous": date(2020, 1, 1)},
+        ...,
+    ]
     return placeholder_data
 
 

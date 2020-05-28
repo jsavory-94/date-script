@@ -4,7 +4,7 @@ from datetime import date, timedelta
 import pprint
 
 
-def get_dates(date_arg):
+def get_dates(current):
     """
         Params
             date_arg: a date in format datetime
@@ -16,23 +16,24 @@ def get_dates(date_arg):
             will be the previous week, not the week that includes the Monday date
         """
 
-    date_var = date_arg
-    weekday = date_var.weekday()
+    weekday = current.weekday()
 
     if weekday != 0:  # non-monday date logic
-        date_previous = date_var - timedelta(days=7)
+        output = []
 
-        date_dict = {"current": date_var, "previous": date_previous}
+        date_previous = current - timedelta(days=7)
 
-        master_list = [date_dict]
+        current_date = {"current": current, "previous": date_previous}
 
+        output.append(current_date)
         weekday_1 = weekday  # for reference in logic generating dicts before date given
         weekday_decrementor = 1
 
         # Create and append dicts of date before given
+
         while weekday_1 > 0:
             date_dict_new = {
-                "current": date_var - timedelta(days=weekday_decrementor),
+                "current": current - timedelta(days=weekday_decrementor),
                 "previous": date_previous - timedelta(days=weekday_decrementor),
             }
             master_list.append(date_dict_new)
@@ -42,10 +43,10 @@ def get_dates(date_arg):
         weekday_2 = weekday  # for reference in logic generating dicts after date given
         weekday_incrementor = 1
 
-        #  Create and append dicts of date after given
+        ## Create and append dicts of date after given
         while weekday_2 < 6:
             date_dict_new_1 = {
-                "current": date_var + timedelta(days=weekday_incrementor),
+                "current": current + timedelta(days=weekday_incrementor),
                 "previous": date_previous + timedelta(days=weekday_incrementor),
             }
             master_list.append(date_dict_new_1)
@@ -57,12 +58,13 @@ def get_dates(date_arg):
         return master_list_sorted
 
     else:  # non-monday logic
-        functional_date = date_var - timedelta(
+        functional_date = current - timedelta(
             days=1
         )  # previous sunday to monday date given
-        functional_date_previous = functional_date - timedelta(7)
-        functional_weekday = functional_date.weekday()
-        functional_weekday_incrementor = 1
+        functional_date_previous = functional_date - timedelta(
+            7
+        )  # corresponding previous
+        functional_weekday = functional_date.weekday()  # corresponding ...
 
         functional_weekday_1 = functional_weekday
 

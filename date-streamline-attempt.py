@@ -11,59 +11,58 @@ def get_dates(date_arg):
 
     date_dict = {'current': date_var, 'previous': date_previous}
 
-    def iterate_through_loop(dictionary date, weekday_arg, increment, is_increment = True):
-        weekday_local = weekday
+    def iterate_through_loop(weekday_arg, increment_decrement, is_increment = True):
+        '''Lines identified in date.py that are repeated unnecessarily:
+            weekday_incrementor = number
+            master_list.append(date_dictionary)
+            weekday_instance -= 1
+            weekday_decrementor/incrementor += 1
+        '''
 
-        if is_incrementor=True
-            increment += 1
+        
+        #weekday_instance -= 1
+        #weekday_decrementor/incrementor += 1
+        #if is_increment=True
+        #     increment_decrement += 1
+        #     date_dict_1 = {'current': date_var + timedelta(days=weekday_incrementor),
+        #                    'previous': date_previous + timedelta(days=weekday_incrementor)}
+        # else:
+        #     increment_decrement -= 1
+        #     date_dict_1 = {'current': date_var + timedelta(days=weekday_incrementor),
+        #                    'previous': date_previous + timedelta(days=weekday_incrementor)}
+        #master_list.append(date_dict)
 
-        else:
-            increment -= 1
-
-if weekday != 0:
-    master_list = [date_dict]
-
-    weekday_1 = weekday
-    weekday_decrementor = 1
+    if weekday != 0:
+        master_list = [date_dict]
 
     while weekday_1 > 0:
-        iterate_through_loop(date_dict, weekday_1, 1, is_increment=True)
-
-    date_dict_new_1 = {'current': date_var + timedelta(days=weekday_incrementor),
-                       'previous': date_previous + timedelta(days=weekday_incrementor)}
+        iterate_through_loop(weekday_1, 1, is_increment=True)
 
     while weekday_2 < 6:
-        iterate_through_loop(date_dict, weekday_1, 1, is_increment=True)
+        iterate_through_loop(weekday_1, 1, is_increment=True)
 
-master_list_sorted = sorted(master_list, key=lambda i: i['current'])
+    master_list_sorted = sorted(master_list, key=lambda i: i['current'])
 
-return master_list_sorted
+    return master_list_sorted
 
-else:
-functional_date = date_var - timedelta(days=1)
-functional_date_previous = functional_date - timedelta(7)
-functional_weekday = functional_date.weekday()
-functional_weekday_incrementor = 1
+ else:
+        functional_date = date_var - timedelta(days=1)
+        functional_date_previous = functional_date - timedelta(7)
+        functional_weekday = functional_date.weekday()
 
-functional_weekday_1 = functional_weekday
-
-master_list_monday = []
-
-date_dict_monday_1 = {'current': functional_date - timedelta(days=functional_weekday_incrementor),
-                          'previous': functional_date_previous - timedelta(days=functional_weekday_incrementor)}
-
-while functional_weekday_1 > 0:
-    iterate_through_loop(date_dict_monday_1, functional_weekday, 1, is_increment=True)
+        master_list_monday = []
 
 
-master_list_monday_sorted = sorted(master_list_monday, key=lambda i: i['current'])
+        while functional_weekday_1 > 0:
+            iterate_through_loop(date_dict_monday_1, functional_weekday, 1, is_increment=True)
 
-return master_list_monday_sorted
+
+        master_list_monday_sorted = sorted(master_list_monday, key=lambda i: i['current'])
+
+        return master_list_monday_sorted
 
 foo = get_dates(date(2020, 5, 21))
 bar = get_dates(date(2020, 5, 18))
 pp = pprint.PrettyPrinter(indent=1)
-print('---foo: 2020, 5, 21---')
 pp.pprint(foo)
-print('---bar: 2020, 5, 18---')
 pp.pprint(bar)
