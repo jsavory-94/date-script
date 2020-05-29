@@ -17,20 +17,18 @@ def get_dates(dt):
             will be the previous week, not the week that includes the Monday date
         """
 
-    #change target to following Sunday
-    if dt.isoweekday() == 1:
+
+    if dt.isoweekday() == 1:  #change dt to previous Sunday
         dt = dt - timedelta(days=1)
     else:
-        dt = dt + timedelta(days=(7 - dt.isoweekday()))
+        dt = dt + timedelta(days=(7 - dt.isoweekday())) #change target to following Sunday
 
-
-
-    i = 7
-    while i > 0:
-        result = {'current': dt - timedelta(days=i),
-                  'previous': dt - timedelta(days=i, weeks=1)}
+    for x in reversed(range(7)):
+        result = {
+            "current": dt - timedelta(days=x),
+            "previous": dt - timedelta(days=x, weeks=1),
+        }
         output.append(result)
-        i-=1
 
     return output
 

@@ -50,7 +50,7 @@ def get_dates(dt: date) -> List[Dict[str, date]]:
     print(f"Current date is {dt}")
 
 
-       for x in reversed(
+    for x in reversed(
         range(7)
     ):  # Step back day by day, and subtract a week for the 'previous'.
         print("*" * 100)
@@ -63,7 +63,7 @@ def get_dates(dt: date) -> List[Dict[str, date]]:
         print(result)
         output.append(result)
 
-    return
+    return output
 
 
 # Results of these should align with the details in the notes above.
